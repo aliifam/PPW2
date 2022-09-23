@@ -4,6 +4,13 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1>Blog Post</h1>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <a class="btn btn-primary" href="{{route('posts.create')}}">Add Blog Post</a>
             @if (count($posts)>0)
                 @foreach ($posts as $p)
                     <div class="well">

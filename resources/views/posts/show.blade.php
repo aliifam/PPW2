@@ -3,15 +3,14 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1>{{$posts->title}}</h1>
-            <small>Tanggal: {{$posts->created_at}}</small>
+            <small>Created at: {{$posts->created_at}}</small>
+            <br>
+            <small>Edited at: {{$posts->updated_at}}</small>
             <p>{{$posts->description}}</p>
             <div class="d-flex">
+                <a href="/posts" class="btn btn-primary"style="margin-right: 10px">Back</a>
                 <a class="btn btn-primary" style="margin-right: 10px" href="{{$posts->id}}/edit">Edit</a>
-                <form action="{{route('posts.destroy', $posts->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                <a class="btn btn-danger" onclick="return confirm('Yakin mau dihapus?')" href="/posts/{{$posts->id}}/delete">Delete</a>
             </div>
         </div>
     </div>

@@ -39,10 +39,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:3',
+            'description' => 'required|min:10'
+        ]);
+
         $post = new Post;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
+
+        return redirect('/posts')->with('success', 'Post Created');
     }
 
     /**
@@ -84,10 +91,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'description' => 'required|min:10'
+        ]);
+
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
+
+        return redirect('/posts')->with('success', 'Post Updated');
     }
 
     /**
@@ -100,5 +114,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+
+        return redirect('/posts')->with('success', 'Post Removed');
     }
 }
