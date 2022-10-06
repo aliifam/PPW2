@@ -18,6 +18,9 @@
                         <small>Tanggal: {{$p->created_at}}</small>
                     </div>
                 @endforeach
+                <div class="d-flex">
+                    {{ $posts->links() }}
+                </div>
             @else
                 <p>Belum ada post</p>
             @endif
