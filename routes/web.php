@@ -24,9 +24,8 @@ Route::get('/inisialisasi', function (){
     "Inisialisasi"]);
 });
 
-Route::get('/matakuliah', function (){
-    return view('matakuliah', [MatkulController::class, 'index']);
-});
+Route::get('/matakuliah', [MatkulController::class, 'index']);
+Route::get('/matakuliah/{id}', [MatkulController::class, 'show']);
 
 Auth::routes();
 

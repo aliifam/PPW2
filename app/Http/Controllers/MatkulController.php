@@ -14,7 +14,12 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        return Matkul::all();
+        $data = array(
+            'id' => 'matkuls',
+            'title' => 'Matakuliah',
+            'matkuls' => Matkul::orderBy('id', 'asc')->paginate(5)
+        );
+        return view('matakuliah', $data);
     }
 
     /**
@@ -44,9 +49,9 @@ class MatkulController extends Controller
      * @param  \App\Models\Matkul  $matkul
      * @return \Illuminate\Http\Response
      */
-    public function show(Matkul $matkul)
+    public function show($id)
     {
-        //
+        return Matkul::find($id);
     }
 
     /**

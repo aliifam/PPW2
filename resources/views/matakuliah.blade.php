@@ -7,12 +7,12 @@
             @if (count($matkuls)>0)
                 @foreach ($matkuls as $p)
                     <div class="well">
-                        <h3><a href="/posts/{{$p->id}}">{{$p->nama_matkul}}</a></h3>
+                        <h3><a href="/matakuliah/{{$p->id}}">{{$p->nama_matkul}}</a></h3>
                         <small>Tanggal: {{$p->created_at}}</small>
                     </div>
                 @endforeach
                 <div class="d-flex">
-                    {{ $posts->links() }}
+                    {{ $matkuls->links() }}
                 </div>
             @else
                 <p>Belum ada post</p>
