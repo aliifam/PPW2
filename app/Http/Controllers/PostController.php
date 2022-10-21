@@ -117,4 +117,9 @@ class PostController extends Controller
 
         return redirect('/posts')->with('success', 'Post Removed');
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth', ["except" => ['index', 'show']]);
+    }
 }

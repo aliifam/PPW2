@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +21,16 @@ Route::get('/', function () {
 Route::resource('posts', PostController::class);
 
 Route::get('posts/{id}/delete', [PostController::class, 'destroy']);
+
+Auth::routes([
+    'reset' => false,
+]);
+
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/tugas8', function () {
+    return view('tugas8');
+})->middleware('auth');
