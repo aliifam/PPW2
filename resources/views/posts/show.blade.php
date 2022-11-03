@@ -9,7 +9,7 @@
             <br>
             @if ($posts->image)
                 <div class="form-group">
-                    <img src="{{ Storage::url($posts->image) }}" height="200" width="200" alt="" />
+                    <img src="{{ Storage::url($posts->image) }}" alt="" />
                 </div>
             @endif
             <br>
