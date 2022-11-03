@@ -41,12 +41,16 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|min:3',
-            'description' => 'required|min:10'
+            'description' => 'required|min:10',
+            'image' => 'image|nullable|max:1999',
         ]);
+
+        $path = $request->file('image')->store('public/images');
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
+        $post->image = $path;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -97,6 +101,15 @@ class PostController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|nullable|max:1999|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+            
+            $path = $request->file('image')->store('public/images');
+            $post->image = $path;
+        }
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();

@@ -3,7 +3,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1>Add Blog Post</h1>
-            <form action="{{route('posts.store')}}" method="POST">
+            <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}  
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -12,6 +12,10 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea type="text" name="description" id="description" class="form-control" rows="5">{{ old('description') }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image" class="form-control">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>

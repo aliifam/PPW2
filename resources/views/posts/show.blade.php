@@ -6,6 +6,13 @@
             <small>Created at: {{$posts->created_at}}</small>
             <br>
             <small>Edited at: {{$posts->updated_at}}</small>
+            <br>
+            @if ($posts->image)
+                <div class="form-group">
+                    <img src="{{ Storage::url($posts->image) }}" height="200" width="200" alt="" />
+                </div>
+            @endif
+            <br>
             <p>{{$posts->description}}</p>
             <div class="d-flex">
                 <a href="/posts" class="btn btn-primary"style="margin-right: 10px">Back</a>
