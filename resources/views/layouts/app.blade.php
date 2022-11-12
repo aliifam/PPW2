@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('lightbox2/css/lightbox.min.css') }}"> 
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -35,7 +37,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a class="nav-link active" aria-current="page" href="/posts">Posts</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('/gallery') }}">Gallery</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('/posts') }}">Posts</a>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -77,5 +80,6 @@
             @yield('content')
         </main>
     </div>
+     <script src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js') }}"></script> 
 </body>
 </html>

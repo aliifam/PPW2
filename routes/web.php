@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Email;
 use App\Mail\SendEmail;
 use Illuminate\Support\Facades\Password;
@@ -102,3 +103,5 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+Route::resource('gallery', GalleryController::class);
