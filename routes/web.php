@@ -105,3 +105,7 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update');
 
 Route::resource('gallery', GalleryController::class);
+
+Route::get('gallery2', function(){
+    return view('gallery2');
+});

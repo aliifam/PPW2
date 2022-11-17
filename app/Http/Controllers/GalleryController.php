@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -104,7 +105,12 @@ class GalleryController extends Controller
 
     public function api()
     {
-        $posts = Post::whereNotNull('image')->paginate(1);
+        $posts = Post::whereNotNull('image')->paginate(10);
+        $posts = $posts->toArray();
+        $posts['data'] = array_map(function($post){
+            $post['image'] = Storage::url($post['image']);
+            return $post;
+        }, $posts['data']);
         return response()->json($posts);
     }
 }
