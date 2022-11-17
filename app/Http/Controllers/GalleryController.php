@@ -87,4 +87,24 @@ class GalleryController extends Controller
     {
         //
     }
+
+    /**
+    * @OA\Get(
+    * path="/api/gallery",
+    * tags={"gallery"},
+    * summary="Return json data post with image",
+    * description="Return json data post with image with pagination",
+    * operationId="gallery",
+    * @OA\Response(
+    * response="default",
+    * description="successful operation"
+    * )
+    * )
+    */
+
+    public function api()
+    {
+        $posts = Post::whereNotNull('image')->paginate(1);
+        return response()->json($posts);
+    }
 }
