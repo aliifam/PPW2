@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/post/store', [PostController::class, 'post'])->name('post.store');
+Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::patch('/post/{post}', [PostController::class, 'update'])->name('post.update');
+Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+
+Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+Route::get('/comment/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
+Route::patch('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+
+Route::post('reply/store', [CommentController::class, 'replyStore'])->name('reply.store');
+
 
 require __DIR__.'/auth.php';
