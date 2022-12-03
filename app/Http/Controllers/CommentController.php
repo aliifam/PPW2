@@ -27,12 +27,12 @@ class CommentController extends Controller
 
     public function replyStore(Request $request)
     {
-        $comment = new Comment;
-        $comment->body = $request->body;
-        $comment->user()->associate(Auth::user());
-        $comment->parent_id = $request->comment_id;
+        $reply = new Comment;
+        $reply->body = $request->body;
+        $reply->user()->associate(Auth::user());
+        $reply->parent_id = $request->comment_id;
         $post = Post::find($request->post_id);
-        $post->comments()->save($comment);
+        $post->comments()->save($reply);
 
         return redirect()->back();
     }
