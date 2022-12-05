@@ -15,7 +15,7 @@
                     <a 
                         x-data=""
                         x-on:click.prevent="$dispatch('open-modal', 'reply-modal-{{ $comment->id }}')"
-                        class="text-blue-500 hover:text-blue-600">Reply
+                        class="text-blue-500 hover:text-blue-600 cursor-pointer">Reply
                     </a>
                     <x-modal name="reply-modal-{{ $comment->id }}">
                         <h2 class="text-lg font-bold m-6">reply to {{ $comment->user->name }}</h2>

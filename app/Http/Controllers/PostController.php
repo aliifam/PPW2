@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -15,7 +16,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::all()->sortByDesc('created_at');
         return view('post.index', compact('posts'));
     }
 
@@ -54,12 +55,18 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->save();
 
-        return redirect()->route('post.index');
+        return redirect()->back();
     }
 
     public function destroy($id)
     {
         $post = Post::find($id);
+        $comments = Comment::where('commentable_id', $id)->get();
+        if ($comments) {
+            foreach ($comments as $comment) {
+                $comment->delete();
+            }
+        }
         $post->delete();
 
         return redirect()->route('post.index');
