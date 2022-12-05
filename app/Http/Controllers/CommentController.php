@@ -36,4 +36,21 @@ class CommentController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->deleteWithReplies();
+
+        return redirect()->back();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $comment = Comment::find($id);
+        $comment->body = $request->body;
+        $comment->save();
+
+        return redirect()->back();
+    }
 }

@@ -18,4 +18,16 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id');
     }
+
+    public function deleteWithReplies()
+    {
+        if($this->reply->count() > 0)
+        {
+            foreach($this->reply as $r)
+            {
+                $r->deleteWithReplies();
+            }
+        }
+        $this->delete();
+    }
 }

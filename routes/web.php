@@ -41,7 +41,6 @@ Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.de
 
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
-Route::get('/comment/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
 Route::patch('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
 Route::post('reply/store', [CommentController::class, 'replyStore'])->name('reply.store');

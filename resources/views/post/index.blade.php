@@ -52,7 +52,11 @@
                                 </div> --}}
                                 <div>
                                     <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $post->user->name }}</h3>
-                                    <p class="text-gray-600 dark:text-gray-400 text-sm">{{ $post->created_at->diffForHumans() }}</p>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}
+                                        @if($post->created_at != $post->updated_at)
+                                            <span title="{{$post->updated_at}}">· (Edited) {{$post->updated_at->diffForHumans()}}</span>
+                                        @endif  
+                                    </p>
                                 </div>
                             </div>
                             <div>
