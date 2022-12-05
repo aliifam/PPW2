@@ -30,7 +30,11 @@
 
             <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight p-4">
-                    Comments
+                    @if ($post->comments->count() > 1)
+                        {{ $post->comments->count() }} Comments
+                    @elseif ($post->comments->count() == 1)
+                        {{ $post->comments->count() }} Comment
+                    @endif
                 </h2>
                 <form class="m-6" method="POST" action="{{ route('comment.store') }}" enctype="multipart/form-data">
                     @csrf
