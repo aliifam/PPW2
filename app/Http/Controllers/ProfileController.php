@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -37,16 +39,18 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        $avatar = "";
+         $avatar = "";
         if($request->hasFile('avatar')){
-            $avatar = time().'.'.$request->avatar->extension();
+            $avatar = pathinfo($request->file('avatar')->getClientOriginalName(), PATHINFO_FILENAME);
+            $avatar = $avatar . '-' . time().'.'.$request->avatar->extension();
             $request->file('avatar')->storeAs('public/avatars', $avatar);
 
-
-            if($request->user()->avatar != "default.png"){
-                Storage::delete('public/avatars/'.$request->user()->avatar);
+            //dicover the old avatar and delete it
+            $oldAvatar = User::find($request->user()->id)->avatar;
+            if($oldAvatar != "default.png"){
+                Storage::delete('public/avatars/'.$oldAvatar);
             }
-
+            
             $request->user()->avatar = $avatar;
         }
 
