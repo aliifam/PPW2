@@ -3,9 +3,9 @@
         <div class="p-6 pl-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <div class="flex justify-between">
                 <div class="flex">
-                    {{-- <div class="mr-4">
-                        <img src="{{ $comment->user->profile_photo_url }}" alt="{{ $comment->user->name }}" class="rounded-full h-10 w-10 object-cover">
-                    </div> --}}
+                    <div class="mr-4">
+                        <img  src="{{asset('storage/avatars/'.$comment->user->avatar)}}" alt="{{ $comment->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                    </div>
                     <div>
                         <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $comment->user->name }}</h3>
                         <p class="text-gray-600 dark:text-gray-400 text-sm" title="{{ $comment->created_at }}">{{ $comment->created_at->diffForHumans() }}

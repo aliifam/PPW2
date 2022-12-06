@@ -10,9 +10,9 @@
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex justify-between">
                         <div class="flex">
-                            {{-- <div class="mr-4">
-                                <img src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover">
-                            </div> --}}
+                            <div class="mr-4">
+                                <img src="{{asset('storage/avatars/'.$post->user->avatar)}}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                            </div>
                             <div>
                                 <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $post->user->name }}</h3>
                                 <p class="text-gray-600 dark:text-gray-400 text-sm" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}
