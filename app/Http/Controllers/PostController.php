@@ -51,6 +51,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $this->authorize('update', $post);
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
@@ -61,6 +62,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        $this->authorize('delete', $post);
         $comments = Comment::where('commentable_id', $id)->get();
         if ($comments) {
             foreach ($comments as $comment) {

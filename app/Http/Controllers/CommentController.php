@@ -40,6 +40,7 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
+        $this->authorize('delete', $comment);
         $comment->deleteWithReplies();
 
         return redirect()->back();
@@ -48,6 +49,7 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
+        $this->authorize('update', $comment);
         $comment->body = $request->body;
         $comment->save();
 
