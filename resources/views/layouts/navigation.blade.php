@@ -5,10 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                    <div class=" ml-2">
+                    <div>
                         <button type="button" x-bind:class="darkMode ? 'bg-indigo-500' : 'bg-gray-200'"
                             x-on:click="darkMode = !darkMode"
                             class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -43,14 +40,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
+                    
+                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index') || request()->routeIs('post.show')">
                          {{ __('Forum') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
-                         {{ __('Create Post') }}
+                    <x-nav-link :href="route('post.my')" :active="request()->routeIs('post.my')">
+                         {{ __('My Posts') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -106,14 +101,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
+            <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index') || request()->routeIs('post.show')">
                 {{ __('Forum') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
-                {{ __('Create Post') }}
+            <x-responsive-nav-link :href="route('post.my')" :active="request()->routeIs('post.my')">
+                {{ __('My Posts') }}
             </x-responsive-nav-link>
         </div>
 

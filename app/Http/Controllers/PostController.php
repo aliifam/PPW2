@@ -94,4 +94,14 @@ class PostController extends Controller
 
         return;
     }
+
+    public function currentUserPosts()
+    {
+        $posts = Post::where('user_id', Auth::user()->id)->get();
+        $total_comment_perpost = [];
+        foreach ($posts as $post) {
+            $total_comment_perpost[$post->id] = Comment::where('commentable_id', $post->id)->count();
+        }
+        return view('post.my', compact('posts', 'total_comment_perpost'));
+    }
 }

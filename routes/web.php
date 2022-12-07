@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,6 +33,7 @@ Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/post/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::get('/me', [PostController::class, 'currentUserPosts'])->name('post.my');
 
 
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');

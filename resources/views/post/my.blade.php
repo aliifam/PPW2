@@ -14,7 +14,7 @@
                     x-on:click.prevent="$dispatch('open-modal', 'add-post-modal')">
                 Add Post
             </button>
-            <x-modal name="add-post-modal" title="Add Post" focusable>
+            <x-modal name="add-post-modal" title="Add Post">
                 <h2 class="m-6 mb-0 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                     Create Post
                 </h2>

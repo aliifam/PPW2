@@ -29,7 +29,7 @@
                                     class="text-blue-500 hover:text-blue-600 cursor-pointer">
                                 Edit
                                 </a>
-                                <x-modal name="edit-post-modal" :id="$post->id">
+                                <x-modal name="edit-post-modal" :id="$post->id" focusable>
                                     <h2 class="text-xl font-bold m-6 mb-0 dark:text-white">Edit Post</h2>
                                     <form method="POST" class="m-6" action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data">
                                         @csrf

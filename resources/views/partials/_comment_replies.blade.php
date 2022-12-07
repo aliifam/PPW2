@@ -21,8 +21,8 @@
                         x-on:click.prevent="$dispatch('open-modal', 'reply-modal-{{ $comment->id }}')"
                         class="text-blue-500 hover:text-blue-600 cursor-pointer">Reply
                     </a>
-                    <x-modal name="reply-modal-{{ $comment->id }}">
-                        <h2 class="text-lg font-bold m-6">reply to {{ $comment->user->name }}</h2>
+                    <x-modal name="reply-modal-{{ $comment->id }}" focusable>
+                        <h2 class="text-lg font-bold m-6 dark:text-white">reply to {{ $comment->user->name }}</h2>
                         <form class="m-6" method="POST" action="{{ route('reply.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 {{-- Comment --}}
@@ -57,7 +57,7 @@
                     <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-comment-modal-{{$comment->id}}')">
                         Edit
                     </x-primary-button>
-                    <x-modal name="edit-comment-modal-{{$comment->id}}">
+                    <x-modal name="edit-comment-modal-{{$comment->id}}" focusable>
                         <h2 class="text-lg font-bold m-6 dark:text-white">Edit Comment</h2>
                         <form class="m-6" method="POST" action="{{ route('comment.update', $comment->id) }}" enctype="multipart/form-data">
                             @csrf
