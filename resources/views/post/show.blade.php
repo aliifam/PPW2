@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $post->title }}
+            TweetWars
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-12 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex justify-between">
                         <div class="flex">
                             <div class="mr-4">
-                                <img src="{{asset('storage/avatars/'.$post->user->avatar)}}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                                <img src="{{asset('storage/avatars/'.$post->user->avatar)}}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover border-2 border-blue-500">
                             </div>
                             <div>
                                 <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $post->user->name }}</h3>
@@ -30,7 +30,7 @@
                                 Edit
                                 </a>
                                 <x-modal name="edit-post-modal" :id="$post->id">
-                                    <h2 class="text-xl font-bold m-6 mb-0">Edit Post</h2>
+                                    <h2 class="text-xl font-bold m-6 mb-0 dark:text-white">Edit Post</h2>
                                     <form method="POST" class="m-6" action="{{ route('post.update', $post->id) }}" enctype="multipart/form-data">
                                         @csrf
                                         @method('PATCH')
@@ -61,7 +61,7 @@
                                     </form>
                                 </x-modal>
                                 <x-modal name="delete-post-modal" :id="$post->id">
-                                    <h2 class="text-xl font-bold m-6 mb-0">Delete Post</h2>
+                                    <h2 class="text-xl font-bold m-6 mb-0 dark:text-white">Delete Post</h2>
                                     <form method="POST" class="m-6" action="{{ route('post.destroy', $post->id) }}">
                                         @csrf
                                         @method('DELETE')
@@ -81,25 +81,37 @@
                         </div>
                     </div>
                     <div class="mt-4">
+                        <h2 class="font-bold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            {{ $post->title }}
+                        </h2>
+                    </div>
+                    <div class="mt-4">
                         <p class="text-gray-900 dark:text-gray-100">{{ $post->body }}</p>
+                    </div>
+                    <div class="mt-6 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                         <p class="font-semibold text-gray-800 dark:text-gray-200 leading-tight ml-2">
+                            @if ($total_comment > 1)
+                                {{ $total_comment }} Comments
+                            @elseif ($total_comment == 1)
+                                {{ $total_comment }} Comment
+                            @else
+                                No Comment
+                            @endif
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight p-4">
-                    @if ($post->comments->count() > 1)
-                        {{ $post->comments->count() }} Comments
-                    @elseif ($post->comments->count() == 1)
-                        {{ $post->comments->count() }} Comment
-                    @endif
-                </h2>
                 <form class="m-6" method="POST" action="{{ route('comment.store') }}" enctype="multipart/form-data">
                     @csrf
                     {{-- Comment --}}
                     <div class="mt-4">
                         <x-input-label for="body" :value="__('Comment')" />
-                        <x-textarea rows="5" id="body" class="block mt-1 w-full" name="body" required>{{ old('body') }}</x-textarea>
+                        <x-textarea rows="3" id="body" class="block mt-1 w-full" name="body" required>{{ old('body') }}</x-textarea>
                         <x-input-error :messages="$errors->get('body')" class="mt-2" />
                     </div>
                     <div>
@@ -113,6 +125,8 @@
                         </x-primary-button>
                     </div>
                 </form>
+            </div>
+            <div class="mt-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="bg-white mr-10 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     @include('partials._comment_replies', ['comments' => $post->comments, 'post_id' => $post->id])
                 </div>

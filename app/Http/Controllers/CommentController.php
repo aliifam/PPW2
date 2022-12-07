@@ -55,4 +55,14 @@ class CommentController extends Controller
 
         return redirect()->back();
     }
+
+    public static function deleteAllUserComments($id)
+    {
+        $comments = Comment::where('user_id', $id)->get();
+        foreach ($comments as $comment) {
+            $comment->deleteWithReplies();
+        }
+
+        return;
+    }
 }

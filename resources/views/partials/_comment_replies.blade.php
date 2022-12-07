@@ -4,7 +4,7 @@
             <div class="flex justify-between">
                 <div class="flex">
                     <div class="mr-4">
-                        <img  src="{{asset('storage/avatars/'.$comment->user->avatar)}}" alt="{{ $comment->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                        <img  src="{{asset('storage/avatars/'.$comment->user->avatar)}}" alt="{{ $comment->user->name }}" class="rounded-full h-10 w-10 object-cover border-2 border-blue-500">
                     </div>
                     <div>
                         <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $comment->user->name }}</h3>
@@ -58,7 +58,7 @@
                         Edit
                     </x-primary-button>
                     <x-modal name="edit-comment-modal-{{$comment->id}}">
-                        <h2 class="text-lg font-bold m-6">Edit Comment</h2>
+                        <h2 class="text-lg font-bold m-6 dark:text-white">Edit Comment</h2>
                         <form class="m-6" method="POST" action="{{ route('comment.update', $comment->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
@@ -84,8 +84,8 @@
                         Delete
                     </x-danger-button>
                     <x-modal name="delete-comment-modal-{{$comment->id}}">
-                        <h2 class="text-lg font-bold m-6">Delete Comment</h2>
-                        <p class="m-6">Are you sure you want to delete this comment?</p>
+                        <h2 class="text-lg font-bold m-6 dark:text-white">Delete Comment</h2>
+                        <p class="m-6 dark:text-white">Are you sure you want to delete this comment?</p>
                         <form class="m-6" method="POST" action="{{ route('comment.destroy', $comment->id) }}">
                             @csrf
                             @method('DELETE')

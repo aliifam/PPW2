@@ -17,7 +17,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all()->sortByDesc('created_at');
-        return view('post.index', compact('posts'));
+        $total_comment_perpost = [];
+        foreach ($posts as $post) {
+            $total_comment_perpost[$post->id] = Comment::where('commentable_id', $post->id)->count();
+        }
+        return view('post.index', compact('posts', 'total_comment_perpost'));
     }
 
     public function create()
@@ -39,7 +43,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('post.show', compact('post'));
+        $total_comment = Comment::where('commentable_id', $id)->count();
+        return view('post.show', compact('post', 'total_comment'));
     }
 
     public function edit($id)
@@ -72,5 +77,21 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('post.index');
+    }
+
+    public static function deleteAllUserPosts($id)
+    {
+        $posts = Post::where('user_id', $id)->get();
+        foreach ($posts as $post) {
+            $comments = Comment::where('commentable_id', $post->id)->get();
+            if ($comments) {
+                foreach ($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+            $post->delete();
+        }
+
+        return;
     }
 }

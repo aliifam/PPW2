@@ -75,6 +75,14 @@ class ProfileController extends Controller
 
         Auth::logout();
 
+        $id = $user->id;
+        $avatar = $user->avatar;
+        PostController::deleteAllUserPosts($id);
+        CommentController::deleteAllUserComments($id);
+        if($avatar != "default.png"){
+            Storage::delete('public/avatars/'.$avatar);
+        }
+
         $user->delete();
 
         $request->session()->invalidate();

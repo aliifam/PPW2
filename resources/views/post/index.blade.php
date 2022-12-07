@@ -7,7 +7,7 @@
 
     
 
-    <div class="py-12">
+    <div class="py-12 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6"
                     x-data=""
@@ -42,14 +42,13 @@
                     </div>
                 </form>
             </x-modal>
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class=" dark:bg-gray-900 overflow-hidden sm:rounded-lg">
                 @foreach ($posts as $post)
-                    <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                    <div class="p-6 bg-white dark:bg-gray-800 border-b shadow-sm border-gray-200 dark:border-gray-700 mb-4 rounded-lg">
                         <div class="flex justify-between">
                             <div class="flex">
                                 <div class="mr-4">
-                                    
-                                    <img src="{{asset('storage/avatars/'.$post->user->avatar)}}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                                    <img src="{{asset('storage/avatars/'.$post->user->avatar)}}" alt="{{ $post->user->name }}" class="rounded-full h-10 w-10 object-cover border-2 border-blue-500">
                                 </div> 
                                 <div>
                                     <h3 class="text-gray-900 dark:text-gray-100 font-bold">{{ $post->user->name }}</h3>
@@ -65,7 +64,22 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <p class="text-gray-900 dark:text-gray-100">{{ $post->body }}</p>
+                            <h2 class="text-gray-900 text-xl dark:text-gray-100 font-bold">{{ Str::limit($post->title, 50) }}</h2>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-gray-900 dark:text-gray-100">{{ Str::limit($post->body, 200) }}</p>
+                        </div>
+                        <div class="mt-4 flex items-center justify-end">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            @if($total_comment_perpost[$post->id] == 0)
+                                <p class="text-gray-900 dark:text-gray-100 ml-2">No Comments</p>
+                            @elseif($total_comment_perpost[$post->id] == 1)
+                                <p class="text-gray-900 dark:text-gray-100 ml-2">1 Comment</p>
+                            @else
+                                <p class="text-gray-900 dark:text-gray-100 ml-2">{{ $total_comment_perpost[$post->id] }} Comments</p>
+                            @endif
                         </div>
                     </div>
                 @endforeach
