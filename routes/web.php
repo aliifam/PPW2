@@ -46,5 +46,8 @@ Route::post('reply/store', [CommentController::class, 'replyStore'])->name('repl
 Route::get('/user/@{username}', [UserController::class, 'show'])->name('user.show');
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
+Route::post('/like-post/{post}', [PostController::class, 'like'])->name('post.like');
+Route::post('/unlike-posst/{post}', [PostController::class, 'unlike'])->name('post.unlike');
+
 
 require __DIR__.'/auth.php';

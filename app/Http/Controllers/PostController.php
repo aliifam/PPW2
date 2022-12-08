@@ -104,4 +104,18 @@ class PostController extends Controller
         }
         return view('post.my', compact('posts', 'total_comment_perpost'));
     }
+
+    public function like($id)
+    {
+        $post = Post::find($id);
+        $post->like(Auth::user()->id);
+        return redirect()->back();
+    }
+
+    public function unlike($id)
+    {
+        $post = Post::find($id);
+        $post->unlike(Auth::user()->id);
+        return redirect()->back();
+    }
 }

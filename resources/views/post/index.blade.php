@@ -73,13 +73,17 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
-                            @if($total_comment_perpost[$post->id] == 0)
-                                <p class="text-gray-900 dark:text-gray-100 ml-2">No Comments</p>
-                            @elseif($total_comment_perpost[$post->id] == 1)
-                                <p class="text-gray-900 dark:text-gray-100 ml-2">1 Comment</p>
-                            @else
-                                <p class="text-gray-900 dark:text-gray-100 ml-2">{{ $total_comment_perpost[$post->id] }} Comments</p>
-                            @endif
+                            
+                            <p class="text-gray-900 dark:text-gray-100 ml-2 mr-4">{{ $total_comment_perpost[$post->id] }}</p>
+                            
+
+                            {{-- //total like --}}
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                            
+                            <p class="text-gray-900 dark:text-gray-100 ml-2">{{ $post->likeCount }}</p>
+                            
                         </div>
                     </div>
                 @endforeach

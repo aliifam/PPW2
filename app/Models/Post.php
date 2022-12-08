@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    // use HasFactory;
+    use HasFactory;
+    use \Conner\Likeable\Likeable;
 
     public function user()
     {
