@@ -23,6 +23,7 @@
                             </div>
                         </div>
                         <div>
+                            @auth
                             @if($post->user->id == Auth::user()->id)
                                 <a x-data=""
                                     x-on:click.prevent="$dispatch('open-modal', 'edit-post-modal', {{ $post->id }})"
@@ -78,6 +79,7 @@
                                     </form>
                                 </x-modal>
                             @endif
+                            @endauth
                         </div>
                     </div>
                     <div class="mt-4">
@@ -104,6 +106,7 @@
 
                         {{-- //like button --}}
                         <div class="ml-4">
+                            @auth
                             @if($post->liked(Auth::user()->id))
                                 <form method="POST" action="{{ route('post.unlike', $post->id) }}">
                                     @csrf
@@ -125,6 +128,18 @@
                                     </button>
                                 </form>
                             @endif
+                            @endauth
+                            @guest
+                                <form method="POST" action="{{ route('post.like', $post->id) }}">
+                                    @csrf
+                                    <button type="submit" class="flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-slate-400 hover:text-rose-600 h-6 w-6 fade" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
+                                        <p class="font-semibold text-gray-800 dark:text-gray-200 leading-tight ml-2">
+                                            {{ $post->likeCount }}
+                                        </p>
+                                    </button>
+                                </form>
+                            @endguest
                         </div>
                     </div>
                 </div>

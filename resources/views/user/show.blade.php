@@ -20,9 +20,11 @@
                             </div>
                         </div>
                         <div>
-                            @if(Auth::user()->id == $user->id)
-                                <a href="{{ route('profile.edit') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>
-                            @endif
+                            @auth
+                                @if(Auth::user()->id == $user->id)
+                                    <a href="{{ route('profile.edit') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Profile</a>
+                                @endif
+                            @endauth
                         </div>
                     </div>
                     <div class="mt-4">
