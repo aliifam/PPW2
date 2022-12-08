@@ -53,6 +53,7 @@
                 <p class="text-gray-900 dark:text-gray-100">{{ $comment->body }}</p>
             </div>
             <div class="mt-4 flex">
+                @auth
                 @if ($comment->user_id == Auth::user()->id)
                     <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'edit-comment-modal-{{$comment->id}}')">
                         Edit
@@ -100,6 +101,7 @@
                         </form>
                     </x-modal>
                 @endif
+                @endauth
             </div>
         </div>
         
