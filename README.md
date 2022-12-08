@@ -8,7 +8,7 @@ Topik : Responsi UAS Praktikum Pemrograman Web 2
 
 # Forum TweetWars
 
-Forum untuk apapun itu bebas pembahasannya
+Forum untuk berperang dengan kata - kata
 
 -   [x] login user
 -   [x] register user
@@ -22,6 +22,6 @@ Forum untuk apapun itu bebas pembahasannya
 -   [ ] User Can Like Post
 -   [ ] Searching Post by keywords
 -   [ ] Filtering Post (most like, most comment, trending)
--   [ ] Public API all user data
+-   [ ] Public API all user data & display the image with lightbox slider
 -   [ ] Pagination Posts
 -   [ ] Notification

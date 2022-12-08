@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,9 @@ Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name
 Route::patch('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
 Route::post('reply/store', [CommentController::class, 'replyStore'])->name('reply.store');
+
+Route::get('/user/@{username}', [UserController::class, 'show'])->name('user.show');
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
 
 require __DIR__.'/auth.php';
