@@ -19,7 +19,7 @@ Forum untuk berperang dengan kata - kata
 -   [x] CRUD Posting Forum
 -   [x] CRUD Avatar image
 -   [x] CRUD Multi Level Nested Comment in Posting
--   [ ] User Can Like Post
+-   [x] User Can Like Post
 -   [ ] Searching Post by keywords
 -   [ ] Filtering Post (most like, most comment, trending)
 -   [ ] Public API all user data & display the image with lightbox slider

@@ -37,6 +37,8 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
 
+        toastr()->success('Post berhasil dibuat');
+
         return redirect()->route('post.index');
     }
 
@@ -61,6 +63,8 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->save();
 
+        toastr()->success('Post berhasil diupdate');
+
         return redirect()->back();
     }
 
@@ -75,6 +79,8 @@ class PostController extends Controller
             }
         }
         $post->delete();
+
+        toastr()->success('Post berhasil dihapus');
 
         return redirect()->route('post.index');
     }

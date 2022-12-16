@@ -22,6 +22,8 @@ class CommentController extends Controller
         $post = Post::find($request->post_id);
         $post->comments()->save($comment);
 
+        toastr()->success('Komentar berhasil dibuat');
+
         return redirect()->back();
     }
 
@@ -34,6 +36,8 @@ class CommentController extends Controller
         $post = Post::find($request->post_id);
         $post->comments()->save($reply);
 
+        toastr()->success('Balasan berhasil dibuat');
+
         return redirect()->back();
     }
 
@@ -42,6 +46,8 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $this->authorize('delete', $comment);
         $comment->deleteWithReplies();
+
+        toastr()->success('Komentar berhasil dihapus');
 
         return redirect()->back();
     }
@@ -52,6 +58,8 @@ class CommentController extends Controller
         $this->authorize('update', $comment);
         $comment->body = $request->body;
         $comment->save();
+
+        toastr()->success('Komentar berhasil diubah');
 
         return redirect()->back();
     }

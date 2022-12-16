@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SendEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::patch('/post/{post}', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
-Route::get('/me', [PostController::class, 'currentUserPosts'])->name('post.my');
+
 
 
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
@@ -47,7 +48,10 @@ Route::get('/user/@{username}', [UserController::class, 'show'])->name('user.sho
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 
 Route::post('/like-post/{post}', [PostController::class, 'like'])->name('post.like');
-Route::post('/unlike-posst/{post}', [PostController::class, 'unlike'])->name('post.unlike');
+Route::post('/unlike-post/{post}', [PostController::class, 'unlike'])->name('post.unlike');
+
+Route::get('/send-email', [SendEmailController::class, 'index'])->name('send.email');
+Route::post('/send-email', [SendEmailController::class, 'send'])->name('send.email');
 
 
 require __DIR__.'/auth.php';

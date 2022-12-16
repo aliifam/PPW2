@@ -44,8 +44,11 @@
                      <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index') || request()->routeIs('post.show')">
                          {{ __('Forum') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('post.my')" :active="request()->routeIs('post.my')">
-                         {{ __('My Posts') }}
+                    <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
+                         {{ __('Send Email') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
+                         {{ __('Public API') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -132,8 +135,11 @@
             <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index') || request()->routeIs('post.show')">
                 {{ __('Forum') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('post.my')" :active="request()->routeIs('post.my')">
-                {{ __('My Posts') }}
+            <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
+                {{ __('Send Email') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
+                {{ __('Public API') }}
             </x-responsive-nav-link>
         </div>
 
