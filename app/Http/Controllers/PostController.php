@@ -31,6 +31,10 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|min:10',
+            'body' => 'required|min:10',
+        ]);
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
@@ -57,6 +61,10 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|min:10',
+            'body' => 'required|min:10',
+        ]);
         $post = Post::find($id);
         $this->authorize('update', $post);
         $post->title = $request->title;

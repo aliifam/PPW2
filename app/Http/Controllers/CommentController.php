@@ -16,6 +16,10 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
+        // $this->validate($request, [
+        //     'body' => 'required|min:10',
+        // ]);
+
         $comment = new Comment;
         $comment->body = $request->body;
         $comment->user()->associate(Auth::user());
@@ -29,6 +33,10 @@ class CommentController extends Controller
 
     public function replyStore(Request $request)
     {
+        // $this->validate($request, [
+        //     'body' => 'required|min:10',
+        // ]);
+
         $reply = new Comment;
         $reply->body = $request->body;
         $reply->user()->associate(Auth::user());
@@ -54,6 +62,9 @@ class CommentController extends Controller
 
     public function update(Request $request, $id)
     {
+        // $this->validate($request, [
+        //     'body' => 'required|min:10',
+        // ]);
         $comment = Comment::find($id);
         $this->authorize('update', $comment);
         $comment->body = $request->body;

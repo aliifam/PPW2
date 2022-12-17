@@ -45,10 +45,10 @@
                          {{ __('Forum') }}
                     </x-nav-link>
                     <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                         {{ __('Send Email') }}
+                         {{ __('Members') }}
                     </x-nav-link>
                     <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                         {{ __('Public API') }}
+                         {{ __('Send Email') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -136,10 +136,10 @@
                 {{ __('Forum') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                {{ __('Send Email') }}
+                {{ __('Members') }}
             </x-responsive-nav-link>
-             <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                {{ __('Public API') }}
+            <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
+                {{ __('Send Email') }}
             </x-responsive-nav-link>
         </div>
 
