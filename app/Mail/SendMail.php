@@ -10,9 +10,11 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable implements ShouldQueue
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $data;
 
     /**
      * Create a new message instance.
@@ -31,15 +33,14 @@ class SendMail extends Mailable implements ShouldQueue
      */
     public function envelope()
     {
+        $email_pengirim =  $this->data['email_pengirim'];
+        $nama_pengirim = $this->data['name'];
+
         return new Envelope(
-            from: new Address(
-                address: $this->data['email_pengirim'],
-                name: $this->data['name'],
-            ),
-            replyTo: new Address(
-                address: $this->data['email_pengirim'],
-                name: $this->data['name'],
-            ),
+            from: new Address($email_pengirim, $nama_pengirim),
+            replyTo: [
+                new Address($email_pengirim, $nama_pengirim),
+            ],
             subject: $this->data['subject'] . ' - ' . $this->data['name'],
         );
     }
