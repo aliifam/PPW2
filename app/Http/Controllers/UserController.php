@@ -26,7 +26,7 @@ class UserController extends Controller
         $username = str_replace('@', '', $username);
         $id = User::where('username', $username)->first()->id;
         $user = User::find($id);
-        $user_posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
+        $user_posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(9);
         $user_comments = Comment::where('user_id', $id)->orderBy('created_at', 'desc')->paginate(5);
         return view('user.show', compact('user', 'user_posts', 'user_comments'));
     }

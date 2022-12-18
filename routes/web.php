@@ -53,5 +53,10 @@ Route::post('/unlike-post/{post}', [PostController::class, 'unlike'])->name('pos
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('send.email');
 Route::post('/send-email', [SendEmailController::class, 'send'])->name('send.email');
 
+Route::get('/userswithapi', function () {
+    $reload = true;
+    return view('user.indexapi', compact('reload'));
+})->name('user.indexapi');
+
 
 require __DIR__.'/auth.php';

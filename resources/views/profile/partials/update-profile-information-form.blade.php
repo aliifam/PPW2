@@ -17,13 +17,23 @@
         @csrf
         @method('patch')
         <div>
-            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{ $user->name }}" class="rounded-full h-20 w-20 object-cover">
+            <img src="{{ asset('storage/avatars/'.$user->avatar)}}" alt="{{ $user->name }}" class="rounded-full h-20 w-20 object-cover" id="view">
         </div>
         <div>
             <x-input-label for="avatar"  :value="__('Avatar')" />
             <x-file-input id="avatar" name="avatar" type="file" class="mt-1 block w-full"/>
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
+        <script>
+            imgInp = document.getElementById('avatar')
+            blah = document.getElementById('view')
+            imgInp.onchange = evt => {
+                const [file] = imgInp.files
+                if (file) {
+                    blah.src = URL.createObjectURL(file)
+                }
+            }
+        </script>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />

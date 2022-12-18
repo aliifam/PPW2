@@ -45,10 +45,13 @@
                          {{ __('Forum') }}
                     </x-nav-link>
                     <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                         {{ __('Members') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
                          {{ __('Send Email') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.indexapi')" :active="request()->routeIs('user.indexapi')">
+                         {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link href="/api/documentation" target="_blank">
+                         {{ __('Public API') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -71,8 +74,13 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Edit Profile') }}
+                        
+                        @php
+                            $user = Auth::user();
+                            $username = $user->username;
+                        @endphp
+                        <x-dropdown-link :href="route('user.show', $username)">
+                            {{ __('My Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -136,10 +144,13 @@
                 {{ __('Forum') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
-                {{ __('Members') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('send.email')" :active="request()->routeIs('send.email')">
                 {{ __('Send Email') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.indexapi')" :active="request()->routeIs('user.indexapi')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="/api/documentation" target="_blank">
+                {{ __('Public API') }}
             </x-responsive-nav-link>
         </div>
 
@@ -155,8 +166,8 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Edit Profile') }}
+                <x-responsive-nav-link :href="route('user.show', $username)">
+                    {{ __('My Profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

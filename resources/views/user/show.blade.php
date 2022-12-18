@@ -69,6 +69,9 @@
                         @endforeach
                     </div>
                 </div>
+                <div class="mt-4">
+                    {{ $user_posts->links() }}
+                </div>
             @endif
 
         </div>

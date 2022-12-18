@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         $total_comment_perpost = [];
         foreach ($posts as $post) {
             $total_comment_perpost[$post->id] = Comment::where('commentable_id', $post->id)->count();

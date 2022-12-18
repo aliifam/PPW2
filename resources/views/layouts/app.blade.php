@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        @if(isset($reload))
+            <meta name="turbo-visit-control" content="reload">
+        @endif
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
@@ -12,6 +15,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- lightbox2 -->
+        <link rel="stylesheet" href="{{ asset('lightbox2/css/lightbox.min.css')}}">
+        <script src="{{ asset('lightbox2/js/lightbox-plus-jquery.min.js')}}"  data-turbo-track="reload"  defer></script>
+
     </head>
     <body class="font-sans antialiased dark:bg-gray-900" x-data="{ darkMode: false }" x-init="
     if (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -37,4 +45,9 @@
             </main>
         </div>
     </body>
+    <footer class="bg-white dark:bg-gray-900 shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 dark:text-gray-400">© 2022 Created By <a href="https://aliif.space" target="_blank" class="text-blue-500 hover:text-blue-700">Aliif</a>. All rights reserved.</p>
+        </div>
+    </footer>
 </html>
