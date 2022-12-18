@@ -54,8 +54,7 @@ Route::get('/send-email', [SendEmailController::class, 'index'])->name('send.ema
 Route::post('/send-email', [SendEmailController::class, 'send'])->name('send.email');
 
 Route::get('/userswithapi', function () {
-    $reload = true;
-    return view('user.indexapi', compact('reload'));
+    return view('user.indexapi');
 })->name('user.indexapi');
 
 
