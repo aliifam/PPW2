@@ -5,8 +5,6 @@
         </h2>
     </x-slot>
 
-    
-
     <div class="py-12 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-6"
@@ -88,6 +86,9 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+                <div class="mt-4">
+                    {{ $posts->links('pagination::tailwind') }}
+                </div>
+        </div> 
     </div>
 </x-app-layout>
